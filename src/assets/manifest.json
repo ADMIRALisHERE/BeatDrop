@@ -1,0 +1,80 @@
+[
+    {
+        "name": "logo",
+        "w": 218,
+        "h": 39,
+        "bytes": 2164
+    },
+    {
+        "name": "btn_add",
+        "w": 133,
+        "h": 14,
+        "bytes": 934
+    },
+    {
+        "name": "btn_working",
+        "w": 75,
+        "h": 18,
+        "bytes": 665
+    },
+    {
+        "name": "btn_remove",
+        "w": 97,
+        "h": 12,
+        "bytes": 726
+    },
+    {
+        "name": "btn_help",
+        "w": 27,
+        "h": 15,
+        "bytes": 334
+    },
+    {
+        "name": "btn_reset",
+        "w": 89,
+        "h": 11,
+        "bytes": 628
+    },
+    {
+        "name": "adv_label",
+        "w": 117,
+        "h": 15,
+        "bytes": 762
+    },
+    {
+        "name": "btn_done",
+        "w": 32,
+        "h": 11,
+        "bytes": 379
+    },
+    {
+        "name": "adv_modified",
+        "w": 45,
+        "h": 10,
+        "bytes": 420
+    },
+    {
+        "name": "title_mark",
+        "w": 45,
+        "h": 11,
+        "bytes": 461
+    },
+    {
+        "name": "title_amount",
+        "w": 70,
+        "h": 11,
+        "bytes": 559
+    },
+    {
+        "name": "footer",
+        "w": 112,
+        "h": 12,
+        "bytes": 770
+    },
+    {
+        "name": "glass",
+        "w": 360,
+        "h": 640,
+        "bytes": 34427
+    }
+]

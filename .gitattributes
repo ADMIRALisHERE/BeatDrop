@@ -1,0 +1,5 @@
+# Line endings stay LF everywhere, so the sources stay byte-for-byte what
+# ExtendScript reads and the release file matches dist/SHA256SUMS.txt.
+* text=auto eol=lf
+*.png binary
+dist/* -text
