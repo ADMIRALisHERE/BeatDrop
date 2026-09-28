@@ -1,15 +1,33 @@
 [
     {
         "name": "logo",
-        "w": 218,
-        "h": 39,
-        "bytes": 2164
+        "w": 216,
+        "h": 40,
+        "bytes": 2272
+    },
+    {
+        "name": "logo_m",
+        "w": 164,
+        "h": 33,
+        "bytes": 1868
+    },
+    {
+        "name": "logo_s",
+        "w": 95,
+        "h": 23,
+        "bytes": 967
     },
     {
         "name": "btn_add",
         "w": 133,
         "h": 14,
         "bytes": 934
+    },
+    {
+        "name": "btn_add_s",
+        "w": 96,
+        "h": 14,
+        "bytes": 773
     },
     {
         "name": "btn_working",
@@ -22,6 +40,12 @@
         "w": 97,
         "h": 12,
         "bytes": 726
+    },
+    {
+        "name": "btn_remove_s",
+        "w": 48,
+        "h": 11,
+        "bytes": 452
     },
     {
         "name": "btn_help",

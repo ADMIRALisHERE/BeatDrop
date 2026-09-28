@@ -198,22 +198,26 @@ public static class AdmiralAssets {
         return Crop(bmp, 1);
     }
 
-    // The glass-look header the user approved: "ADMIRAL" in Georgia, flat
+    // The glass-look header: the product's name, "BeatDrop", in mixed case
+    // (the user's choice, 1.2.1; it said "ADMIRAL" before) in Georgia, flat
     // brass, letters spaced 4 px, over "BEAT MARKERS FOR EDITORS" in small
     // spaced capitals - no emblem.
-    public static Bitmap LogoWordmark() {
+    // Narrower panels get a smaller rendering (tagPx 0: the name alone),
+    // never a scaled-down one: ScriptUI scales without smoothing.
+    public static Bitmap LogoWordmark(float px, float spacing, float tagPx, float tagSpacing) {
         Bitmap bmp = new Bitmap(460, 90, PixelFormat.Format32bppArgb);
         using (Graphics g = Graphics.FromImage(bmp)) {
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             float bottom;
-            using (Font f = new Font("Georgia", 27f, FontStyle.Regular, GraphicsUnit.Pixel)) {
-                DrawSpaced(g, f, "ADMIRAL", H("#D4A849"), 10, 10, 4f);
+            using (Font f = new Font("Georgia", px, FontStyle.Regular, GraphicsUnit.Pixel)) {
+                DrawSpaced(g, f, "BeatDrop", H("#D4A849"), 10, 10, spacing);
                 bottom = 10 + f.GetHeight(g);
             }
-            using (Font f = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel))
-                DrawSpaced(g, f, "BEAT MARKERS FOR EDITORS", H("#C9B27A"), 11, bottom - 1, 3f);
+            if (tagPx > 0)
+                using (Font f = new Font("Segoe UI", tagPx, FontStyle.Regular, GraphicsUnit.Pixel))
+                    DrawSpaced(g, f, "BEAT MARKERS FOR EDITORS", H("#C9B27A"), 11, bottom - 1, tagSpacing);
         }
         return Crop(bmp, 1);
     }
@@ -242,10 +246,16 @@ function Save($bmp, $name) {
 
 $navyText = "#1B1407"; $light = "#DCE2EC"; $gold = "#D9B25A"
 $rows = @()
-$rows += Save ([AdmiralAssets]::LogoWordmark()) "logo"
+# Pictures that can meet a narrow panel also come smaller ("_m", "_s"); the
+# panel draws the largest that fits.
+$rows += Save ([AdmiralAssets]::LogoWordmark(29, 1.2, 11, 3)) "logo"
+$rows += Save ([AdmiralAssets]::LogoWordmark(24, 1, 9.5, 1.6)) "logo_m"
+$rows += Save ([AdmiralAssets]::LogoWordmark(21, 0.8, 0, 0)) "logo_s"
 $rows += Save ([AdmiralAssets]::Label(@("Add Beat Markers"), @($navyText), "Segoe UI Semibold", 16, 0)) "btn_add"
+$rows += Save ([AdmiralAssets]::Label(@("Add Markers"), @($navyText), "Segoe UI Semibold", 16, 0)) "btn_add_s"
 $rows += Save ([AdmiralAssets]::Label(@("Working..."), @($navyText), "Segoe UI Semibold", 16, 0)) "btn_working"
 $rows += Save ([AdmiralAssets]::Label(@("Remove Markers"), @($light), "Segoe UI", 13, 0)) "btn_remove"
+$rows += Save ([AdmiralAssets]::Label(@("Remove"), @($light), "Segoe UI", 13, 0)) "btn_remove_s"
 $rows += Save ([AdmiralAssets]::Label(@("Help"), @($light), "Segoe UI", 13, 0)) "btn_help"
 $rows += Save ([AdmiralAssets]::Label(@("Reset to Defaults"), @($light), "Segoe UI", 12, 0)) "btn_reset"
 $rows += Save ([AdmiralAssets]::Label(@("Advanced settings" + [char]0x2026), @($light), "Segoe UI", 13, 0)) "adv_label"

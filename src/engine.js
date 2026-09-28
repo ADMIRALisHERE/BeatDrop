@@ -5,8 +5,8 @@
     /*  Constants                                                          */
     /* ------------------------------------------------------------------ */
 
-    var APP_NAME = "Admiral BeatDrop";
-    var VERSION  = "1.2";
+    var APP_NAME = "BeatDrop";
+    var VERSION  = "1.2.1";
     var PREFIX   = "[ABM]";
 
     var SETTINGS_SECTION = "AdmiralBeatDrop.1";

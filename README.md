@@ -1,9 +1,9 @@
-# Admiral BeatDrop
+# BeatDrop
 
 **Beat and hit markers for Adobe After Effects.** Select your music layer, pick what to
 mark, click once. Free and open source: no account, no license key, no network.
 
-![The Admiral BeatDrop panel](docs/panel.png)
+![The BeatDrop panel](docs/panel.png)
 
 ## What it marks
 

@@ -24,7 +24,7 @@ HEADER = '''#target aftereffects
 #targetengine "AdmiralBeatDrop"
 
 /*
-  ADMIRAL BEATDROP  %(version)s
+  BeatDrop  %(version)s
   Beat and hit markers for After Effects 2022+.  made by Admiral
 
   Copyright (C) 2026 Amirhossein Asadi

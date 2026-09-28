@@ -226,22 +226,22 @@
         }
     }
 
-    function drawImageFit(g, a, w, h, pad) {
-        var dw, dh, room = w - 2 * pad;
-        if (!a) return false;
-        dw = a.w;
-        dh = a.h;
-        if (dw > room) {
-            dh = Math.round(dh * room / dw);
-            dw = room;
+    function pickImage(key, room) {
+        var names = [key, key + "_m", key + "_s"], i, a, last = null;
+        for (i = 0; i < names.length; i++) {
+            a = IMG[names[i]];
+            if (!a) continue;
+            if (a.w <= room) return a;
+            last = a;
         }
-        if (dw <= 0 || dh <= 0) return true;
+        return last;
+    }
+
+    function drawImageFit(g, key, w, h, pad) {
+        var a = pickImage(key, w - 2 * pad);
+        if (!a) return false;
         try {
-            if (dw === a.w) {
-                g.drawImage(a.img, Math.round((w - dw) / 2), Math.round((h - dh) / 2));
-            } else {
-                g.drawImage(a.img, Math.round((w - dw) / 2), Math.round((h - dh) / 2), dw, dh);
-            }
+            g.drawImage(a.img, Math.round((w - a.w) / 2), Math.round((h - a.h) / 2));
             return true;
         } catch (_) {
             return false;
@@ -514,7 +514,7 @@
                     fillRect(g, 1, 1, w - 2, 1, WHITE, 0.07);
                     strokeRect(g, 0.5, 0.5, w - 1, h - 1, T.edge, 0.22);
                 }
-                if (!drawImageFit(g, IMG[this.__key], w, h, 6)) {
+                if (!drawImageFit(g, this.__key, w, h, 6)) {
                     drawFallbackText(g, this.text, primary ? T.ink : T.text, h);
                 }
                 if (!this.enabled && !primary) fillRect(g, 0, 0, w, h, T.bg, 0.45);
@@ -526,18 +526,15 @@
         header.margins = [0, 2, 0, 0];
         var logoArea = header.add("panel");
         flex(logoArea);
-        logoArea.preferredSize = [IMG.logo ? IMG.logo.w : 200, IMG.logo ? IMG.logo.h + 2 : 24];
+        logoArea.preferredSize = [IMG.logo_s ? IMG.logo_s.w : 100, IMG.logo ? IMG.logo.h + 2 : 24];
         logoArea.minimumSize.width = 80;
         logoArea.helpTip = APP_NAME + " " + VERSION;
         logoArea.onDraw = function () {
-            var g = this.graphics, w = this.size.width, h = this.size.height, a = IMG.logo, dw, dh;
+            var g = this.graphics, w = this.size.width, h = this.size.height, a = pickImage("logo", w);
             drawGlass(g, this);
             if (!a) { drawFallbackText(g, APP_NAME, T.gold, h); return; }
-            dw = Math.min(a.w, w);
-            dh = Math.round(a.h * dw / a.w);
             try {
-                if (dw === a.w) g.drawImage(a.img, 0, Math.round((h - dh) / 2));
-                else g.drawImage(a.img, 0, Math.round((h - dh) / 2), dw, dh);
+                g.drawImage(a.img, 0, Math.round((h - a.h) / 2));
             } catch (_) {
                 drawFallbackText(g, APP_NAME, T.gold, h);
             }
@@ -855,7 +852,7 @@
             drawGlass(g, this);
             fadeLine(g, 0, y, lineW, false);
             fadeLine(g, w - lineW, y, lineW, true);
-            if (!drawImageFit(g, a, w, h, 0)) drawFallbackText(g, "made by Admiral", T.gold, h);
+            if (!drawImageFit(g, "footer", w, h, 0)) drawFallbackText(g, "made by Admiral", T.gold, h);
         };
 
         var busy = false;

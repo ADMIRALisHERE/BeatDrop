@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.1 - 2026-09-28
+
+- **Sharp text in narrow panels.** In a narrow docked panel the logo and button labels
+  were shrunk and broke up into pixels. They now switch to smaller, sharp versions
+  ("Remove" instead of "Remove Markers", the logo without its tagline) and are never
+  scaled.
+- **The header shows the product's name, BeatDrop**, in the same brass serif; "made by
+  Admiral" stays at the bottom. Window titles and messages say BeatDrop too.
+
+Detection is unchanged.
+
 ## 1.2 - 2026-09-27
 
 - **A new look: navy glass.** The panel and the Advanced settings window sit on navy glass;
